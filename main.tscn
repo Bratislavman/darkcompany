@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2hphuoai7ref"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ug3b2"]
+[ext_resource type="Script" path="res://camera_2d.gd" id="2_063sg"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ug3b2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1e-05, 1e-05)
+limit_left = -500
+limit_top = -2000
+limit_right = 20000
+limit_bottom = 20000
+editor_draw_limits = true
+script = ExtResource("2_063sg")
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "bnvnbvnvbnnnnnnnnnnnnnn"
