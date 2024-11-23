@@ -11,31 +11,29 @@ var m_CameraTween : Tween = null
 
 func _process(_delta) -> void:
 	if (Input.is_action_pressed("mr")):
-		print(344)
+		print(222)
 		move_local_x(CAMERA_MOVEMENT_SPEED)
 		
 	elif (Input.is_action_pressed("ml")):
 		move_local_x(-CAMERA_MOVEMENT_SPEED)
 		
-	if (Input.is_action_pressed("mmu")):
+	if (Input.is_action_pressed("mu")):
 		move_local_y(-CAMERA_MOVEMENT_SPEED)
 		
-	elif (Input.is_action_pressed("mmd")):
+	elif (Input.is_action_pressed("md")):
 		move_local_y(CAMERA_MOVEMENT_SPEED)
 		
-	# if (Input.is_action_just_pressed("Camera_ZoomIn")):
-	# 	if (get_zoom() < CAMERA_ZOOM_MAX):
-	# 		if (m_CameraTween == null or not m_CameraTween.is_running()):
-	# 			m_CameraTween = create_tween()
-	# 			m_CameraTween.tween_property(self, "zoom", get_zoom() * (CAMERA_ZOOM_DEFAULT + CAMERA_ZOOM_SPEED),
-	# 											CAMERA_TWEEN_DURATION).set_trans(Tween.TRANS_CUBIC)
+	if (Input.is_action_just_pressed("mmu")):
+		print(666)
+		if (get_zoom() < CAMERA_ZOOM_MAX):
+			if (m_CameraTween == null or not m_CameraTween.is_running()):
+				m_CameraTween = create_tween()
+				m_CameraTween.tween_property(self, "zoom", get_zoom() * (CAMERA_ZOOM_DEFAULT + CAMERA_ZOOM_SPEED),
+												CAMERA_TWEEN_DURATION).set_trans(Tween.TRANS_CUBIC)
 		
-	# elif (Input.is_action_just_pressed("Camera_ZoomOut")):
-	# 	if (get_zoom() > CAMERA_ZOOM_MIN):
-	# 		if (m_CameraTween == null or not m_CameraTween.is_running()):
-	# 			m_CameraTween = create_tween()
-	# 			m_CameraTween.tween_property(self, "zoom", get_zoom() / (CAMERA_ZOOM_DEFAULT + CAMERA_ZOOM_SPEED),
-	# 											CAMERA_TWEEN_DURATION).set_trans(Tween.TRANS_CUBIC)
-		
-	# elif (Input.is_action_just_pressed("Camera_ZoomReset")):
-	# 	set_zoom(CAMERA_ZOOM_DEFAULT)
+	elif (Input.is_action_just_pressed("mmd")):
+		if (get_zoom() > CAMERA_ZOOM_MIN):
+			if (m_CameraTween == null or not m_CameraTween.is_running()):
+				m_CameraTween = create_tween()
+				m_CameraTween.tween_property(self, "zoom", get_zoom() / (CAMERA_ZOOM_DEFAULT + CAMERA_ZOOM_SPEED),
+												CAMERA_TWEEN_DURATION).set_trans(Tween.TRANS_CUBIC)
