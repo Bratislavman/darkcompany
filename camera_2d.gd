@@ -11,7 +11,6 @@ var m_CameraTween : Tween = null
 
 func _process(_delta) -> void:
 	if (Input.is_action_pressed("mr")):
-		print(222)
 		move_local_x(CAMERA_MOVEMENT_SPEED)
 		
 	elif (Input.is_action_pressed("ml")):
@@ -24,7 +23,6 @@ func _process(_delta) -> void:
 		move_local_y(CAMERA_MOVEMENT_SPEED)
 		
 	if (Input.is_action_just_pressed("mmu")):
-		print(666)
 		if (get_zoom() < CAMERA_ZOOM_MAX):
 			if (m_CameraTween == null or not m_CameraTween.is_running()):
 				m_CameraTween = create_tween()

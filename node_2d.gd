@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,10 +10,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
 
-func _on_character_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print(event, 'event666')
-
-
-func _on_button_button_down() -> void:
-	pass # Replace with function body.
+func _physics_process(delta: float) -> void:
+	velocity.x = move_toward(velocity.x, 0, SPEED)
+	move_and_slide()

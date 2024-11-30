@@ -1,7 +1,61 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2hphuoai7ref"]
+[gd_scene load_steps=18 format=3 uid="uid://d2hphuoai7ref"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ug3b2"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="2_063sg"]
+[ext_resource type="Script" path="res://pause.gd" id="3_2md7p"]
+[ext_resource type="Texture2D" uid="uid://drfmttmh5dqa0" path="res://2d_sprite_animation_assets/run_animation/run-1.png" id="4_yhan2"]
+[ext_resource type="Texture2D" uid="uid://bcmoh0edjohuk" path="res://2d_sprite_animation_assets/run_animation/run-2.png" id="5_epgmt"]
+[ext_resource type="Script" path="res://character_body_2d.gd" id="5_lgcep"]
+[ext_resource type="Texture2D" uid="uid://erb3qkbkks0k" path="res://2d_sprite_animation_assets/run_animation/run-3.png" id="6_jcpg7"]
+[ext_resource type="Texture2D" uid="uid://dgsvbbanngadj" path="res://2d_sprite_animation_assets/run_animation/run-4.png" id="7_gy5dr"]
+[ext_resource type="Texture2D" uid="uid://d0pcxinle2jx3" path="res://2d_sprite_animation_assets/run_animation/run-5.png" id="8_fgdlp"]
+[ext_resource type="Texture2D" uid="uid://dk6xgoodur342" path="res://2d_sprite_animation_assets/run_animation/run-6.png" id="9_qhu0g"]
+[ext_resource type="Texture2D" uid="uid://c6fo6665gbf0g" path="res://2d_sprite_animation_assets/run_animation/run-7.png" id="10_rte0e"]
+[ext_resource type="Texture2D" uid="uid://ch8873i1dtfju" path="res://2d_sprite_animation_assets/run_animation/run-8.png" id="11_a8sa6"]
+[ext_resource type="Script" path="res://node_2d_2.gd" id="13_8cosn"]
+[ext_resource type="Script" path="res://character_body_2d2.gd" id="14_ugo1b"]
+[ext_resource type="Script" path="res://button.gd" id="15_l3v0r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ionib"]
+radius = 19.0
+height = 70.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x1ifv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_yhan2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_epgmt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jcpg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gy5dr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fgdlp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qhu0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_rte0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_a8sa6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ug3b2")
@@ -16,6 +70,47 @@ editor_draw_limits = true
 script = ExtResource("2_063sg")
 
 [node name="Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = -8.0
+offset_top = 146.0
+offset_right = 229.0
+offset_bottom = 177.0
 text = "bnvnbvnvbnnnnnnnnnnnnnn"
+script = ExtResource("3_2md7p")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D"]
+script = ExtResource("5_lgcep")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_ionib")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_x1ifv")
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(346, 0)
+script = ExtResource("13_8cosn")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D2"]
+script = ExtResource("14_ugo1b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_ionib")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D2/CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_x1ifv")
+
+[node name="Button" type="Button" parent="Node2D2/CharacterBody2D"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -30.0
+offset_top = -28.0
+offset_right = 27.0
+offset_bottom = 46.0
+script = ExtResource("15_l3v0r")
+
+[connection signal="mouse_entered" from="Node2D2/CharacterBody2D" to="Node2D/CharacterBody2D" method="_on_character_body_2d_mouse_entered"]
+[connection signal="button_down" from="Node2D2/CharacterBody2D/Button" to="Node2D2/CharacterBody2D/Button" method="_on_button_down"]
+[connection signal="button_up" from="Node2D2/CharacterBody2D/Button" to="Node2D2/CharacterBody2D/Button" method="_on_button_up"]

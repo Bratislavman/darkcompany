@@ -1,4 +1,4 @@
-extends Node2D
+extends AnimatedSprite2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -11,9 +11,5 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_character_body_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print(event, 'event666')
-
-
-func _on_button_button_down() -> void:
-	pass # Replace with function body.
+func _on_button_2_button_down() -> void:
+	print('button UP')
