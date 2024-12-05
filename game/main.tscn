@@ -47,7 +47,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 4.0,
 "texture": ExtResource("7_gy5dr")
 }, {
 "duration": 1.0,
@@ -87,7 +87,7 @@ shape = SubResource("CapsuleShape2D_ionib")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_x1ifv")
 animation = &"stay"
-frame_progress = 0.720633
+frame_progress = 0.631739
 
 [node name="Node2D2" type="Node2D" parent="."]
 position = Vector2(346, 0)
