@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://d2hphuoai7ref"]
 
 [ext_resource type="Script" path="res://game/camera_2d.gd" id="2_nui0f"]
+[ext_resource type="Script" path="res://game/character_body_2d.gd" id="2_u2lnu"]
 [ext_resource type="Texture2D" uid="uid://drfmttmh5dqa0" path="res://2d_sprite_animation_assets/run_animation/run-1.png" id="4_yhan2"]
 [ext_resource type="Texture2D" uid="uid://bcmoh0edjohuk" path="res://2d_sprite_animation_assets/run_animation/run-2.png" id="5_epgmt"]
-[ext_resource type="Script" path="res://character_body_2d.gd" id="5_lgcep"]
 [ext_resource type="Texture2D" uid="uid://erb3qkbkks0k" path="res://2d_sprite_animation_assets/run_animation/run-3.png" id="6_jcpg7"]
 [ext_resource type="Texture2D" uid="uid://dgsvbbanngadj" path="res://2d_sprite_animation_assets/run_animation/run-4.png" id="7_gy5dr"]
 [ext_resource type="Texture2D" uid="uid://d0pcxinle2jx3" path="res://2d_sprite_animation_assets/run_animation/run-5.png" id="8_fgdlp"]
@@ -43,12 +43,15 @@ animations = [{
 "texture": ExtResource("11_a8sa6")
 }],
 "loop": true,
-"name": &"default",
+"name": &"run",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("7_gy5dr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_fgdlp")
 }],
 "loop": true,
 "name": &"stay",
@@ -76,13 +79,15 @@ text = "bnvnbvnvbnnnnnnnnnnnnnn"
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D"]
-script = ExtResource("5_lgcep")
+script = ExtResource("2_u2lnu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_ionib")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_x1ifv")
+animation = &"stay"
+frame_progress = 0.720633
 
 [node name="Node2D2" type="Node2D" parent="."]
 position = Vector2(346, 0)
@@ -95,6 +100,7 @@ disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D2/CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_x1ifv")
+animation = &"run"
 
 [node name="Button" type="Button" parent="Node2D2/CharacterBody2D"]
 modulate = Color(1, 1, 1, 0)
