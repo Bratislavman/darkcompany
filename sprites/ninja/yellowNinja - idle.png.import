@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk6xgoodur342"
-path="res://.godot/imported/run-6.png-7f8d05194299f55605f1ca0f51473544.ctex"
+uid="uid://di520j3xhofij"
+path="res://.godot/imported/yellowNinja - idle.png-6158527ecf6dc9bd5c673c86889fcc56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2d_sprite_animation_assets/run_animation/run-6.png"
-dest_files=["res://.godot/imported/run-6.png-7f8d05194299f55605f1ca0f51473544.ctex"]
+source_file="res://sprites/ninja/yellowNinja - idle.png"
+dest_files=["res://.godot/imported/yellowNinja - idle.png-6158527ecf6dc9bd5c673c86889fcc56.ctex"]
 
 [params]
 

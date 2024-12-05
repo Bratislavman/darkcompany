@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drfmttmh5dqa0"
-path="res://.godot/imported/run-1.png-91b2e9b9a0052afa6767eb603e1be9da.ctex"
+uid="uid://diogqswa5yka3"
+path="res://.godot/imported/yellowNinja - Death.png-199c995cfb94246936f2ba49fd9fc6d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2d_sprite_animation_assets/run_animation/run-1.png"
-dest_files=["res://.godot/imported/run-1.png-91b2e9b9a0052afa6767eb603e1be9da.ctex"]
+source_file="res://sprites/ninja/yellowNinja - Death.png"
+dest_files=["res://.godot/imported/yellowNinja - Death.png-199c995cfb94246936f2ba49fd9fc6d5.ctex"]
 
 [params]
 
