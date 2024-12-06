@@ -3,13 +3,14 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(111)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
 	pass
 
-func _on_pause_button_pressed():
-	get_tree().paused = true
-	show()
+func _on_button_down():
+	get_tree().paused = !get_tree().paused
