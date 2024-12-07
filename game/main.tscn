@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://d2hphuoai7ref"]
+[gd_scene load_steps=64 format=3 uid="uid://d2hphuoai7ref"]
 
 [ext_resource type="Script" path="res://game/main.gd" id="1_snyqb"]
 [ext_resource type="Script" path="res://game/pause.gd" id="2_0s5ph"]
@@ -401,9 +401,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vs3in"]
-size = Vector2(520.5, 398)
-
 [node name="Main" type="Node2D"]
 script = ExtResource("1_snyqb")
 
@@ -425,18 +422,29 @@ offset_bottom = 177.0
 text = "bnvnbvnvbnnnnnnnnnnnnnn"
 script = ExtResource("2_0s5ph")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node" type="Node2D" parent="."]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D"]
+[node name="Hero" type="CharacterBody2D" parent="Node"]
 script = ExtResource("2_u2lnu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Hero"]
 shape = SubResource("CapsuleShape2D_ionib")
+disabled = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D/CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node/Hero"]
 sprite_frames = SubResource("SpriteFrames_x1ifv")
 animation = &"run"
 frame_progress = 0.981297
+
+[node name="Button" type="Button" parent="Node/Hero"]
+physics_interpolation_mode = 1
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -30.0
+offset_top = -28.0
+offset_right = 27.0
+offset_bottom = 46.0
+script = ExtResource("9_cp1mt")
 
 [node name="Node2D2" type="Node2D" parent="."]
 position = Vector2(346, 0)
@@ -452,6 +460,7 @@ sprite_frames = SubResource("SpriteFrames_x1ifv")
 animation = &"run"
 
 [node name="Button" type="Button" parent="Node2D2/CharacterBody2D"]
+physics_interpolation_mode = 1
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -30.0
@@ -460,13 +469,7 @@ offset_right = 27.0
 offset_bottom = 46.0
 script = ExtResource("9_cp1mt")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(137, -29)
-shape = SubResource("RectangleShape2D_vs3in")
-
 [connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
-[connection signal="mouse_entered" from="Node2D2/CharacterBody2D" to="Node2D/CharacterBody2D" method="_on_character_body_2d_mouse_entered"]
+[connection signal="button_up" from="Node/Hero/Button" to="Node/Hero/Button" method="_on_button_up"]
+[connection signal="mouse_entered" from="Node2D2/CharacterBody2D" to="Node/Hero" method="_on_character_body_2d_mouse_entered"]
 [connection signal="button_up" from="Node2D2/CharacterBody2D/Button" to="Node2D2/CharacterBody2D/Button" method="_on_button_up"]
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
