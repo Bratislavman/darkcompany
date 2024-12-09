@@ -413,16 +413,8 @@ limit_bottom = 20000
 editor_draw_limits = true
 script = ExtResource("2_nui0f")
 
-[node name="Button" type="Button" parent="."]
-process_mode = 3
-offset_left = -8.0
-offset_top = 146.0
-offset_right = 229.0
-offset_bottom = 177.0
-text = "bnvnbvnvbnnnnnnnnnnnnnn"
-script = ExtResource("2_0s5ph")
-
 [node name="Node" type="Node2D" parent="."]
+position = Vector2(69, 52)
 
 [node name="Hero" type="CharacterBody2D" parent="Node"]
 script = ExtResource("2_u2lnu")
@@ -447,9 +439,10 @@ offset_bottom = 46.0
 script = ExtResource("9_cp1mt")
 
 [node name="Node2D2" type="Node2D" parent="."]
-position = Vector2(346, 0)
+position = Vector2(346, 61)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D2"]
+script = ExtResource("2_u2lnu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_ionib")
@@ -469,7 +462,32 @@ offset_right = 27.0
 offset_bottom = 46.0
 script = ExtResource("9_cp1mt")
 
-[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -237.0
+offset_bottom = 31.0
+grow_horizontal = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/PanelContainer"]
+layout_mode = 2
+text = "Пауза"
+script = ExtResource("2_0s5ph")
+
 [connection signal="button_up" from="Node/Hero/Button" to="Node/Hero/Button" method="_on_button_up"]
 [connection signal="mouse_entered" from="Node2D2/CharacterBody2D" to="Node/Hero" method="_on_character_body_2d_mouse_entered"]
 [connection signal="button_up" from="Node2D2/CharacterBody2D/Button" to="Node2D2/CharacterBody2D/Button" method="_on_button_up"]
+[connection signal="button_down" from="CanvasLayer/Control/PanelContainer/Button" to="CanvasLayer/Control/PanelContainer/Button" method="_on_button_down"]
