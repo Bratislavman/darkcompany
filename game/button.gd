@@ -11,7 +11,8 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_button_up():
-	var hero = get_parent()
-	if hero && !hero.isHero:
-		print(hero.isHero, 'char click')
+	var npc = get_parent()
+	if npc && !npc.isHero && G.hero:
+		print(npc.isHero, 'char click')
+
 	

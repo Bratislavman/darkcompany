@@ -4,6 +4,10 @@ const SPEED = 300.0
 
 var movePosition
 var targetPosition
+
+var commands = []
+var attributes = {}
+
 var isHero = false
 
 @onready var _animated_sprite = $AnimatedSprite2D
@@ -11,6 +15,7 @@ var isHero = false
 var speed = SPEED
 
 func _physics_process(delta: float) -> void:
+	# перемещение к объекту либо в позицию мыши
 	if movePosition || targetPosition:
 		var distTargetPosition
 		var targetInLeft
@@ -18,7 +23,7 @@ func _physics_process(delta: float) -> void:
 		if targetPosition:
 			distTargetPosition = int(abs(position.x - targetPosition.x))
 			targetInLeft = targetPosition.x > position.x
-			permissibleDistance = rand_range(5, 10)
+			permissibleDistance = randi_range(5, 10)
 		else:
 			distTargetPosition = int(abs(position.x - movePosition.x))
 			targetInLeft = movePosition.x > position.x	
@@ -37,9 +42,17 @@ func _physics_process(delta: float) -> void:
 			_animated_sprite.flip_h = false
 		else:
 			_animated_sprite.flip_h = true
+	
+	# исполнение кода команды
+	if commands.size() > 0:
+		commands[0].action()
+
 
 func _ready() -> void:
 	_animated_sprite.play("stay")
+	attributes['dmg'] = Attributes.new('Сила', 10)
+	print(attributes)
 
 func initTargetAction() -> void:
-	_animated_sprite.play("stay")
+	pass
+	# _animated_sprite.play("stay")
