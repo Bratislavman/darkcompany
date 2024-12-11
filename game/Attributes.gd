@@ -3,18 +3,18 @@ extends Node2D
 class_name Attributes
 
 var nameAttr = ''
-var max = 0
+var valueMax = 0
 var value = 0
 
-func _init(name, max):
+func _init(name, valueMax):
 	nameAttr = name
-	self.max = max
-	value = max
+	self.valueMax = valueMax
+	value = valueMax
 
 func plus(val):
 	var currVal = value + val
-	if currVal > max:
-		value = max
+	if currVal > valueMax:
+		value = valueMax
 	else:
 		value = currVal		
 

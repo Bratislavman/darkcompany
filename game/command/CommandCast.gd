@@ -9,7 +9,6 @@ var animationName = ''
 var animationFunc = null
 
 func _init(caster, target, animationName, animationFunc):
-	super._init()
 	self.caster = caster
 	self.target = target
 	self.animationName = animationName
@@ -18,4 +17,4 @@ func _init(caster, target, animationName, animationFunc):
 
 #когда анимация завершилась, убиваем команду
 func endAnimation():
-	caster.removeCommand(id)
+	caster.removeCommand()
