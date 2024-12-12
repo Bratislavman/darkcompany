@@ -1,14 +1,16 @@
 extends Node2D
 
-var hero = null
+@onready var hero = $Node/Hero
 
 func _ready() -> void:
-	hero = get_node("Node/Hero")
-	print(hero, get_instance_id(), 'hero gew ready')
+	print(hero, get_instance_id(), 'hero gew ready 0')
 
 func _process(delta: float) -> void:
 	pass
 
 func _input(event):
-	# print(event.as_text())
-	pass
+	if event is InputEventMouseButton && event.pressed:
+		var mousePos = MousePosition.new(hero)
+		if mousePos && hero:
+			hero.isMousePosition = true
+			hero.targetPosition = get_global_mouse_position()

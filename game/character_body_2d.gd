@@ -5,10 +5,10 @@ const MOUSE_POS_DISTANCE = 5
 
 # расстояние до взаимдоействия с целью/позиции мыши чтоб прекратить движение
 var actionDistance = 10
-var movePosition
 var targetPosition
+var isMousePosition = false
 
-var commands = []
+var command = null
 
 var attributes = {}
 
@@ -19,22 +19,17 @@ var speed = SPEED
 @onready var _animated_sprite = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
-	var currCommand = getCurrCommand()
-
-	if currCommand is CommandMove && movePosition || targetPosition:
+	if command && targetPosition || targetPosition:
 		var distTargetPosition
 		var targetInLeft
 		var permissibleDistance = MOUSE_POS_DISTANCE
 
-		# определяем раст-е до цели(для объекта делаем немножко с рендомом)
-		if targetPosition:
-			distTargetPosition = int(abs(position.x - targetPosition.x))
-			targetInLeft = targetPosition.x > position.x
+		distTargetPosition = int(abs(position.x - targetPosition.x))
+		targetInLeft = targetPosition.x > position.x	
+
+		if !isMousePosition:
 			permissibleDistance = randi_range(MOUSE_POS_DISTANCE, actionDistance)
-		else:
-			distTargetPosition = int(abs(position.x - movePosition.x))
-			targetInLeft = movePosition.x > position.x	
-		
+
 		# завершяем движение либо движемся к цели
 		if (distTargetPosition <= permissibleDistance):
 			_animated_sprite.play("stay")
@@ -53,8 +48,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			_animated_sprite.flip_h = true
 	
-	if currCommand:
-		currCommand.action()
+	if command:
+		command.action()
 		
 
 func _ready() -> void:
@@ -67,15 +62,9 @@ func initTargetAction() -> void:
 	pass
 	# _animated_sprite.play("stay")
 
-func getCurrCommand():
-	if commands.size() > 0:
-		return commands[0]
-	else:
-		return null	
 
 func removeCommand():
-	if commands.size() > 0:
-		commands.remove_at(0)
+	command = null
 
 func isLive():
 	return attributes['hp'].value > 0
