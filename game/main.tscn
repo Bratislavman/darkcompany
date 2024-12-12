@@ -430,8 +430,8 @@ shape = SubResource("CapsuleShape2D_ionib")
 disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node/Hero"]
-position = Vector2(1, 1)
-scale = Vector2(1.15625, 1.0625)
+position = Vector2(2, 9)
+scale = Vector2(0.734375, 0.5625)
 sprite_frames = SubResource("SpriteFrames_x1ifv")
 animation = &"run"
 frame_progress = 0.981297
@@ -457,8 +457,8 @@ shape = SubResource("CapsuleShape2D_ionib")
 disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D2/CharacterBody2D"]
-position = Vector2(2, -11.5)
-scale = Vector2(1.03125, 1.03906)
+position = Vector2(0.500004, -11.5)
+scale = Vector2(1.05469, 1.03906)
 sprite_frames = SubResource("SpriteFrames_x1ifv")
 animation = &"run"
 

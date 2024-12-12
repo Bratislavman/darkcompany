@@ -21,14 +21,20 @@ var speed = SPEED
 func _physics_process(delta: float) -> void:
 	if command && targetPosition || targetPosition:
 		var distTargetPosition
-		var targetInLeft
+		var targetInR
 		var permissibleDistance = MOUSE_POS_DISTANCE
 
 		distTargetPosition = int(abs(position.x - targetPosition.x))
-		targetInLeft = targetPosition.x > position.x	
+		targetInR = targetPosition.x > position.x	
 
 		if !isMousePosition:
 			permissibleDistance = randi_range(MOUSE_POS_DISTANCE, actionDistance)
+
+		print(targetInR, int(abs(position.x - targetPosition.x)), 'targetInR')
+		if (targetInR):
+			distTargetPosition -= 150
+		else:
+			distTargetPosition += 100
 
 		# завершяем движение либо движемся к цели
 		if (distTargetPosition <= permissibleDistance):
@@ -37,13 +43,13 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, speed, SPEED)
 			move_and_slide()
 			_animated_sprite.play("run")
-			if (targetInLeft):
+			if (targetInR):
 				speed = SPEED
 			else:
 				speed = SPEED*-1
 
 		# инвертируем спрайт к цели
-		if (targetInLeft):
+		if (targetInR):
 			_animated_sprite.flip_h = false
 		else:
 			_animated_sprite.flip_h = true
