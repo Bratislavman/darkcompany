@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
 		# завершяем движение либо движемся к цели
 		if (distTargetPosition <= permissibleDistance):
 			_animated_sprite.play("stay")
+			print(position, 'position!!!!')
 		else:
 			_animated_sprite.play("run")
 			if (targetInR):
@@ -54,8 +55,7 @@ func _physics_process(delta: float) -> void:
 		
 
 	var xxx = get_last_slide_collision() 
-	if xxx: 
-		print(xxx.get_collider(), 'cv2222')	
+	# print(xxx.isHero, 'cv2222')	
 
 func _ready() -> void:
 	_animated_sprite.play("stay")
@@ -66,6 +66,7 @@ func _ready() -> void:
 func initTargetAction() -> void:
 	pass
 	# _animated_sprite.play("stay")
+
 
 func removeCommand():
 	command = null
