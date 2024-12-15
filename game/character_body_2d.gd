@@ -30,15 +30,16 @@ func _physics_process(delta: float) -> void:
 		if !isMousePosition:
 			permissibleDistance = randi_range(MOUSE_POS_DISTANCE, actionDistance)
 
-		print(targetInR, int(abs(position.x - targetPosition.x)), 'targetInR')
-		if (targetInR):
-			distTargetPosition -= 150
-		else:
-			distTargetPosition += 100
+		# cмещение
+		# if (targetInR):
+		# 	distTargetPosition -= 150
+		# else:
+		# 	distTargetPosition += 100
 
 		# завершяем движение либо движемся к цели
 		if (distTargetPosition <= permissibleDistance):
 			_animated_sprite.play("stay")
+			print(position, 'position!!!!')
 		else:
 			velocity.x = move_toward(velocity.x, speed, SPEED)
 			move_and_slide()

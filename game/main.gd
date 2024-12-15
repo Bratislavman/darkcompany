@@ -14,3 +14,4 @@ func _input(event):
 		if mousePos && hero:
 			hero.isMousePosition = true
 			hero.targetPosition = get_global_mouse_position()
+			print(hero.targetPosition, 'hero.targetPosition!!!!')

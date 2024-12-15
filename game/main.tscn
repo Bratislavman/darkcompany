@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://d2hphuoai7ref"]
+[gd_scene load_steps=74 format=3 uid="uid://d2hphuoai7ref"]
 
 [ext_resource type="Script" path="res://game/main.gd" id="1_snyqb"]
 [ext_resource type="Script" path="res://game/pause.gd" id="2_0s5ph"]
@@ -8,8 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://diogqswa5yka3" path="res://sprites/ninja/yellowNinja - Death.png" id="4_d5thg"]
 [ext_resource type="Texture2D" uid="uid://dbb2fqkofx0dc" path="res://sprites/ninja/yellowNinja - walk.png" id="5_a1src"]
 [ext_resource type="Texture2D" uid="uid://di520j3xhofij" path="res://sprites/ninja/yellowNinja - idle.png" id="6_mj4sv"]
+[ext_resource type="Texture2D" uid="uid://drxhf7cit1vkv" path="res://sprites/run_animation/run-1.png" id="6_slr6l"]
+[ext_resource type="Texture2D" uid="uid://7l3mh3fryqy3" path="res://sprites/run_animation/run-2.png" id="7_uwho1"]
+[ext_resource type="Texture2D" uid="uid://6mvlj53e81g2" path="res://sprites/run_animation/run-3.png" id="8_4gjdl"]
+[ext_resource type="Texture2D" uid="uid://dxo274fj0r7ic" path="res://sprites/run_animation/run-4.png" id="9_8w5p7"]
 [ext_resource type="Script" path="res://game/button.gd" id="9_cp1mt"]
 [ext_resource type="Script" path="res://game/MousePosition.gd" id="10_jsph2"]
+[ext_resource type="Texture2D" uid="uid://bnvmrsglfql33" path="res://sprites/run_animation/run-5.png" id="10_qjox7"]
+[ext_resource type="Texture2D" uid="uid://bbxfsk36st3um" path="res://sprites/run_animation/run-6.png" id="11_jvbsv"]
+[ext_resource type="Texture2D" uid="uid://bvlxe1lep4ai7" path="res://sprites/run_animation/run-7.png" id="12_tda7u"]
+[ext_resource type="Texture2D" uid="uid://dm1lom4ecbdxj" path="res://sprites/run_animation/run-8.png" id="13_n4f1g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ionib"]
 radius = 17.0
@@ -373,6 +381,35 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_slr6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_uwho1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4gjdl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8w5p7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_qjox7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jvbsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tda7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_n4f1g")
+}],
+"loop": true,
+"name": &"run10",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_qtrw0")
 }, {
@@ -399,6 +436,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"stay",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_tda7u")
+}],
+"loop": true,
+"name": &"stay10",
 "speed": 5.0
 }]
 
@@ -430,11 +475,8 @@ shape = SubResource("CapsuleShape2D_ionib")
 disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node/Hero"]
-position = Vector2(2, 9)
-scale = Vector2(0.734375, 0.5625)
 sprite_frames = SubResource("SpriteFrames_x1ifv")
-animation = &"run"
-frame_progress = 0.981297
+animation = &"stay"
 
 [node name="Button" type="Button" parent="Node/Hero"]
 physics_interpolation_mode = 1
