@@ -25,29 +25,23 @@ func _physics_process(delta: float) -> void:
 		var permissibleDistance = MOUSE_POS_DISTANCE
 
 		distTargetPosition = int(abs(position.x - targetPosition.x))
+		
 		targetInR = targetPosition.x > position.x	
 
 		if !isMousePosition:
 			permissibleDistance = randi_range(MOUSE_POS_DISTANCE, actionDistance)
 
-		# cмещение
-		# if (targetInR):
-		# 	distTargetPosition -= 150
-		# else:
-		# 	distTargetPosition += 100
-
 		# завершяем движение либо движемся к цели
 		if (distTargetPosition <= permissibleDistance):
 			_animated_sprite.play("stay")
-			print(position, 'position!!!!')
 		else:
-			velocity.x = move_toward(velocity.x, speed, SPEED)
-			move_and_slide()
 			_animated_sprite.play("run")
 			if (targetInR):
 				speed = SPEED
 			else:
 				speed = SPEED*-1
+			velocity.x = move_toward(velocity.x, speed, SPEED)
+			move_and_slide()
 
 		# инвертируем спрайт к цели
 		if (targetInR):
@@ -59,6 +53,10 @@ func _physics_process(delta: float) -> void:
 		command.action()
 		
 
+	var xxx = get_last_slide_collision() 
+	if xxx: 
+		print(xxx.get_collider(), 'cv2222')	
+
 func _ready() -> void:
 	_animated_sprite.play("stay")
 	attributes['dmg'] = Attributes.new('Урон', 10)
@@ -68,7 +66,6 @@ func _ready() -> void:
 func initTargetAction() -> void:
 	pass
 	# _animated_sprite.play("stay")
-
 
 func removeCommand():
 	command = null
