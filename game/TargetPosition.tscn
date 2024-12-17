@@ -1,18 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbrfoaip8col2"]
-
-[ext_resource type="Script" path="res://game/MousePosition.gd" id="1_l8bbo"]
+[gd_scene load_steps=2 format=3 uid="uid://cbrfoaip8col2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ff1xw"]
 radius = 4.0
 height = 8.0
 
-[node name="TargetPosition" type="Node2D"]
+[node name="TargetPosition" type="CharacterBody2D"]
 
-[node name="MousePos" type="CharacterBody2D" parent="."]
-script = ExtResource("1_l8bbo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MousePos"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ff1xw")
 disabled = true
-
-[connection signal="input_event" from="MousePos" to="MousePos" method="_on_input_event"]

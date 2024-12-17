@@ -1,7 +1,7 @@
 extends Node
 
 
-#команда проигрыша анимки действия к обьекту и действие в конкретный момент анимки
+#команда проигрыша анимки действия к обьекту и само действие в конкретный момент анимки
 class_name CommandParent
 
 var caster = null
@@ -10,6 +10,8 @@ var animationName = ''
 # animationFunc вызывается в actionAnimFrame у юнита, передавая свои уник данные
 # применяется во время конкретного кадра анимки персонажа
 var animationFunc = null
+# дистанция взаимдоействия. 0 значит, что походить к цели не надо
+var actionDistance = 0
 
 func _init(caster, target, animationName, animationFunc):
 	self.caster = caster
@@ -19,16 +21,15 @@ func _init(caster, target, animationName, animationFunc):
 	caster.playAnim(animationName)
 
 # код. исполняемый в process юнита, пока он жив, иначе удаляемся
-func action():
-	if caster:
-		if caster.isLive():
-			actionEffect()
-		else:
-			caster.removeCommand()
+func processCommand():
+	if caster && caster.isLive():
+		action()
+	else:
+		endAnimation()
 
-# что делает команда во время исполнения
-func actionEffect():
+func action():
 	pass
 
 func endAnimation():
-	caster.removeCommand()	
+	caster.removeCommand()
+	queue_free()

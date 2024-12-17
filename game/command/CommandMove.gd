@@ -1,7 +1,33 @@
-extends CommandParent
-
+extends Node2D
 class_name CommandMove
 
-func _init(caster, target, animationFunc):
-	super._init(caster, target, 'run', animationFunc))
+var actionDistance = 5
+var target
+var mousePos
+
+@onready var mousePosScene = load("res://game/TargetPosition.tscn")
+
+func _init(target):
+	if target:
+		self.target = target
+		self.target.command = self 
+	else:
+		remove()
 	
+func _ready() -> void:
+	mousePos = mousePosScene.instantiate()
+	G.add_child(mousePos)
+	if mousePos && target:
+		mousePos.position = get_global_mouse_position()
+		target.target = mousePos
+
+func action():
+	remove()
+
+func remove():
+	if target:
+		target.removeCommand()
+	if mousePos:
+		mousePos.queue_free()
+	queue_free()
+	print('remove')
