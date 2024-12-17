@@ -14,5 +14,6 @@ func _on_button_up():
 	var npc = get_parent()
 	if npc && !npc.isHero && G.hero:
 		print(npc.isHero, 'char click')
+		G.hero
 
 	

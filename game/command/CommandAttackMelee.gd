@@ -1,13 +1,9 @@
-extends Node2D
+extends CommandAnim
 class_name CommandMove
 
-var actionDistance = 5
-var target
-var mousePos
+var actionDistance = 0
 
-@onready var mousePosScene = load("res://game/TargetPosition.tscn")
-
-func _init(target):
+func _init(caster, target, animationName, animationFunc):
 	if target:
 		self.target = target
 		self.target.command = self 

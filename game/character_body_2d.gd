@@ -7,6 +7,7 @@ var command = null
 var attributes = {}
 var isHero = false
 var speed = SPEED
+var attackDistance = 10
 
 @onready var _animated_sprite = $AnimatedSprite2D
 
