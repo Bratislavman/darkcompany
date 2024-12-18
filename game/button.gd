@@ -1,6 +1,5 @@
 extends Button
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,7 +11,10 @@ func _process(delta: float) -> void:
 
 func _on_button_up():
 	var npc = get_parent()
-	print(npc, 'char click')
+	print(G.hero.commands, 'char click')
 	if npc && !npc.isHero && G.hero:
-		print(npc.isHero, 'char click')
+		
+		if G.hero.commands.size() && (G.hero.commands[0] as CommandMove):
+			G.hero.commands[0].remove()
+		
 		# G.hero

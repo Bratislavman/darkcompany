@@ -10,7 +10,7 @@ var mousePos
 func _init(target):
 	if target:
 		self.target = target
-		self.target.command = self 
+		self.target.commands.push_back(self) 
 	else:
 		remove()
 	

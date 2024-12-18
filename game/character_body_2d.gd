@@ -3,9 +3,9 @@ extends CharacterBody2D
 const SPEED = 300.0
 
 var target
-var command = null
+var commands = []
 var attributes = {}
-var isHero = false
+@export var isHero = false
 var speed = SPEED
 var attackDistance = 10
 
@@ -13,13 +13,13 @@ var attackDistance = 10
 @onready var _sprite = $Sprite2D
 
 func _physics_process(delta: float) -> void:
-	if command:
+	if commands.size():
 		# экшен будет либо в мув когда достигаем цели, либо сразу если дейсвие с анимкой
-		if command as CommandMove:
-			if target && command.actionDistance > 0:
+		if commands[0] as CommandMove:
+			if target && commands[0].actionDistance > 0:
 				move()
 		else:	
-			command.action()
+			commands[0].action()
 
 
 func _ready() -> void:
@@ -31,7 +31,9 @@ func _ready() -> void:
 func move() -> void:
 	var distTargetPosition
 	var targetInR
-	var permissibleDistance = command.actionDistance
+	var permissibleDistance = commands[0].actionDistance
+	
+	print(position.x, '  ', target.position.x, '334')
 
 	distTargetPosition = int(abs(position.x - target.position.x))
 	
@@ -40,7 +42,7 @@ func move() -> void:
 	# завершяем движение и совершаем экшен команды либо движемся к цели
 	if (distTargetPosition <= permissibleDistance):
 		_animation_player.play("ninja/stay")
-		command.action()
+		commands[0].action()
 	else:
 		_animation_player.play("ninja/run")
 		if (targetInR):
@@ -61,7 +63,8 @@ func initTargetAction() -> void:
 	# _animation_player.play("stay")
 
 func removeCommand():
-	command = null
+	commands.pop_front()
+
 
 func isLive():
 	return attributes['hp'].value > 0
