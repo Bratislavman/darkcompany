@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://d2hphuoai7ref"]
+[gd_scene load_steps=70 format=3 uid="uid://d2hphuoai7ref"]
 
 [ext_resource type="Script" path="res://game/main.gd" id="1_snyqb"]
 [ext_resource type="Script" path="res://game/pause.gd" id="2_0s5ph"]
@@ -13,6 +13,84 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ionib"]
 radius = 19.0
 height = 48.0
+
+[sub_resource type="Animation" id="Animation_jdbdo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3t6l"]
+_data = {
+"RESET": SubResource("Animation_jdbdo")
+}
+
+[sub_resource type="Animation" id="Animation_thfv2"]
+resource_name = "attack"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1792, 0.366667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0, 4, 5, 7]
+}
+
+[sub_resource type="Animation" id="Animation_c21qe"]
+resource_name = "stay"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_ftfgf"]
+resource_name = "run"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [16, 18]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_owta6"]
+_data = {
+"attack": SubResource("Animation_thfv2"),
+"run": SubResource("Animation_ftfgf"),
+"stay": SubResource("Animation_c21qe")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibgvb"]
 atlas = ExtResource("3_1lx1t")
@@ -286,7 +364,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ahffx")
 }],
 "loop": true,
-"name": &"attack",
+"name": &"attack5",
 "speed": 5.0
 }, {
 "frames": [{
@@ -447,11 +525,6 @@ script = ExtResource("2_u2lnu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Hero"]
 shape = SubResource("CapsuleShape2D_ionib")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node/Hero"]
-scale = Vector2(0.984375, 0.976563)
-sprite_frames = SubResource("SpriteFrames_x1ifv")
-animation = &"stay"
-
 [node name="Button" type="Button" parent="Node/Hero"]
 physics_interpolation_mode = 1
 modulate = Color(1, 1, 1, 0)
@@ -462,6 +535,21 @@ offset_right = 18.0
 offset_bottom = 43.0
 script = ExtResource("9_cp1mt")
 metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Node/Hero"]
+position = Vector2(-62, -67)
+scale = Vector2(0.976563, 0.90625)
+texture = ExtResource("3_1lx1t")
+centered = false
+hframes = 20
+frame = 1
+region_rect = Rect2(119, 242, 119, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node/Hero"]
+libraries = {
+"": SubResource("AnimationLibrary_p3t6l"),
+"ninja": SubResource("AnimationLibrary_owta6")
+}
 
 [node name="Node2D2" type="Node2D" parent="."]
 position = Vector2(289, 0)

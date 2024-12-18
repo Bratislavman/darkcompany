@@ -9,7 +9,8 @@ var isHero = false
 var speed = SPEED
 var attackDistance = 10
 
-@onready var _animated_sprite = $AnimatedSprite2D
+@onready var _animation_player = $AnimationPlayer
+@onready var _sprite = $Sprite2D
 
 func _physics_process(delta: float) -> void:
 	if command:
@@ -22,7 +23,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _ready() -> void:
-	_animated_sprite.play("stay")
+	if _animation_player:
+		_animation_player.play("ninja/stay")
 	attributes['dmg'] = Attributes.new('Урон', 10)
 	attributes['hp'] = Attributes.new('Жизни', 10)
 
@@ -37,10 +39,10 @@ func move() -> void:
 
 	# завершяем движение и совершаем экшен команды либо движемся к цели
 	if (distTargetPosition <= permissibleDistance):
-		_animated_sprite.play("stay")
+		_animation_player.play("ninja/stay")
 		command.action()
 	else:
-		_animated_sprite.play("run")
+		_animation_player.play("ninja/run")
 		if (targetInR):
 			speed = SPEED
 		else:
@@ -50,13 +52,13 @@ func move() -> void:
 
 	# инвертируем спрайт к цели
 	if (targetInR):
-		_animated_sprite.flip_h = false
+		_sprite.flip_h = false
 	else:
-		_animated_sprite.flip_h = true
+		_sprite.flip_h = true
 
 func initTargetAction() -> void:
 	pass
-	# _animated_sprite.play("stay")
+	# _animation_player.play("stay")
 
 func removeCommand():
 	command = null

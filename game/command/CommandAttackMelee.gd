@@ -1,5 +1,5 @@
 extends CommandAnim
-class_name CommandMove
+class_name CommandAttackMelee
 
 var actionDistance = 0
 
