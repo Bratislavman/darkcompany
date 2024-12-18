@@ -10,5 +10,7 @@ func _process(delta: float) -> void:
 
 func _input(event):
 	if event is InputEventMouseButton && event.pressed && hero:
+		if hero.command as CommandMove:
+			hero.command.remove()
 		var commandMove = CommandMove.new(hero)
 		add_child(commandMove)

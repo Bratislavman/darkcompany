@@ -567,12 +567,13 @@ sprite_frames = SubResource("SpriteFrames_x1ifv")
 animation = &"run"
 
 [node name="Button" type="Button" parent="Node2D2/CharacterBody2D"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
 z_index = 100
 offset_left = -25.0
 offset_top = -28.0
 offset_right = 25.0
 offset_bottom = 35.0
-text = "vb"
 script = ExtResource("9_cp1mt")
 
 [node name="Control" type="Control" parent="Node2D2/CharacterBody2D"]
