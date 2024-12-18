@@ -486,11 +486,10 @@ script = ExtResource("1_snyqb")
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 15
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+grow_horizontal = 0
 size_flags_vertical = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
@@ -504,6 +503,8 @@ grow_horizontal = 0
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/PanelContainer"]
 process_mode = 3
+z_index = -10
+z_as_relative = false
 layout_mode = 2
 text = "Пауза"
 script = ExtResource("2_0s5ph")
@@ -533,7 +534,6 @@ offset_left = -20.0
 offset_top = -14.0
 offset_right = 18.0
 offset_bottom = 43.0
-script = ExtResource("9_cp1mt")
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Node/Hero"]
@@ -567,14 +567,19 @@ sprite_frames = SubResource("SpriteFrames_x1ifv")
 animation = &"run"
 
 [node name="Button" type="Button" parent="Node2D2/CharacterBody2D"]
-physics_interpolation_mode = 1
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
-offset_left = -30.0
+z_index = 100
+offset_left = -25.0
 offset_top = -28.0
-offset_right = 27.0
-offset_bottom = 46.0
+offset_right = 25.0
+offset_bottom = 35.0
+text = "vb"
 script = ExtResource("9_cp1mt")
+
+[node name="Control" type="Control" parent="Node2D2/CharacterBody2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="button_down" from="CanvasLayer/Control/PanelContainer/Button" to="CanvasLayer/Control/PanelContainer/Button" method="_on_button_down"]
 [connection signal="input_event" from="Node/Hero" to="Node/Hero" method="_on_input_event"]
