@@ -95,12 +95,10 @@ shape = SubResource("CapsuleShape2D_g377n")
 
 [node name="Button" type="Button" parent="."]
 physics_interpolation_mode = 1
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
-offset_left = -20.0
-offset_top = -14.0
-offset_right = 18.0
-offset_bottom = 43.0
+offset_left = 73.0
+offset_top = -20.0
+offset_right = 111.0
+offset_bottom = 37.0
 script = ExtResource("2_ojed6")
 metadata/_edit_use_anchors_ = true
 
@@ -121,3 +119,5 @@ libraries = {
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="button_up" from="Button" to="Button" method="_on_button_up"]
+[connection signal="mouse_entered" from="Button" to="Button" method="_on_mouse_entered"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

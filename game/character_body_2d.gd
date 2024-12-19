@@ -49,7 +49,7 @@ func move() -> void:
 	else:
 		_animation_player.play("ninja/run")
 		velocity.x = (direction.x * SPEED)
-		print(velocity, '  ', target.global_position.x, ' Hero, target')
+		#print(velocity, '  ', target.global_position.x, ' Hero, target')
 
 	# инвертируем спрайт к цели
 	if signf(velocity.x) != 0:
