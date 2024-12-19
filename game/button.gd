@@ -11,10 +11,18 @@ func _process(delta: float) -> void:
 
 func _on_button_up():
 	var npc = get_parent()
-	print(G.hero.commands, 'char click')
+	print(npc.commands, 'char click')
 	if npc && !npc.isHero && G.hero:
 		
-		if G.hero.commands.size() && (G.hero.commands[0] as CommandMove):
-			G.hero.commands[0].remove()
+		if npc.commands.size() && (npc.commands[0] as CommandMove):
+			npc.commands[0].remove()
 		
 		# G.hero
+
+
+func _on_mouse_entered():
+	print('2')
+
+
+func _on_pressed():
+	print('111111')

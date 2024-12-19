@@ -8,7 +8,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _input(event):
+func _unhandled_input(event):
 	if Input.is_action_just_pressed("click") and hero:
 		var commandMove = CommandMove.new(hero)
 		add_child(commandMove)
