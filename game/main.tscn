@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2hphuoai7ref"]
+[gd_scene load_steps=6 format=3 uid="uid://d2hphuoai7ref"]
 
 [ext_resource type="Script" path="res://game/main.gd" id="1_snyqb"]
 [ext_resource type="Script" path="res://game/pause.gd" id="2_0s5ph"]
 [ext_resource type="Script" path="res://game/camera_2d.gd" id="2_nui0f"]
 [ext_resource type="PackedScene" uid="uid://dfqah32c8rrch" path="res://game/ninja.tscn" id="4_0us66"]
+[ext_resource type="Texture2D" uid="uid://bgxxvobh5wonn" path="res://icon.svg" id="5_6wyl7"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_snyqb")
@@ -44,10 +45,14 @@ limit_bottom = 20000
 editor_draw_limits = true
 script = ExtResource("2_nui0f")
 
-[node name="Node" parent="." instance=ExtResource("4_0us66")]
+[node name="Hero" parent="." instance=ExtResource("4_0us66")]
 position = Vector2(146, 95)
 
 [node name="Node2" parent="." instance=ExtResource("4_0us66")]
 position = Vector2(467, 95)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(310, 179)
+texture = ExtResource("5_6wyl7")
 
 [connection signal="button_down" from="CanvasLayer/Control/PanelContainer/Button" to="CanvasLayer/Control/PanelContainer/Button" method="_on_button_down"]

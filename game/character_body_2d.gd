@@ -1,12 +1,10 @@
 extends CharacterBody2D
-
-const SPEED = 300.0
-
+class_name Hero
+const SPEED :float = 300.0
 var target
-var commands = []
-var attributes = {}
+var commands :Array = []
+var attributes :Dictionary = {}
 @export var isHero = false
-var speed = SPEED
 var attackDistance = 10
 
 @onready var _animation_player = $AnimationPlayer
@@ -15,11 +13,14 @@ var attackDistance = 10
 func _physics_process(delta: float) -> void:
 	if commands.size():
 		# экшен будет либо в мув когда достигаем цели, либо сразу если дейсвие с анимкой
-		if commands[0] as CommandMove:
+		if commands[0] is CommandMove: # исправи as на is
 			if target && commands[0].actionDistance > 0:
+				pass
 				move()
 		else:	
 			commands[0].action()
+	move_and_slide()
+	
 
 
 func _ready() -> void:
@@ -30,33 +31,29 @@ func _ready() -> void:
 
 func move() -> void:
 	var distTargetPosition
-	var targetInR
 	var permissibleDistance = commands[0].actionDistance
 	
-	print(position.x, '  ', target.position.x, '334')
 
-	distTargetPosition = int(abs(position.x - target.position.x))
-	
-	targetInR = target.position.x > position.x
-
+	distTargetPosition = target.global_position - global_position
+	var direction:Vector2 = distTargetPosition.normalized()
+	if direction.x > 0:
+		direction.x = 1
+	elif direction.x < 0:
+		direction.x = -1
 	# завершяем движение и совершаем экшен команды либо движемся к цели
-	if (distTargetPosition <= permissibleDistance):
+	if (global_position.x >= target.global_position.x - permissibleDistance and 
+	global_position.x <= target.global_position.x + permissibleDistance):
 		_animation_player.play("ninja/stay")
 		commands[0].action()
+		velocity = Vector2.ZERO
 	else:
 		_animation_player.play("ninja/run")
-		if (targetInR):
-			speed = SPEED
-		else:
-			speed = SPEED*-1
-		velocity.x = move_toward(velocity.x, speed, SPEED)
-		move_and_slide()
+		velocity.x = (direction.x * SPEED)
+		print(velocity, '  ', target.global_position.x, ' Hero, target')
 
 	# инвертируем спрайт к цели
-	if (targetInR):
-		_sprite.flip_h = false
-	else:
-		_sprite.flip_h = true
+	if signf(velocity.x) != 0:
+		_sprite.flip_h = velocity.x < 0
 
 func initTargetAction() -> void:
 	pass

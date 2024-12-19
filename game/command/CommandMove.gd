@@ -2,23 +2,23 @@ extends Node2D
 class_name CommandMove
 
 var actionDistance = 5
-var target
+var target:Hero
 var mousePos
 
 @onready var mousePosScene = load("res://game/TargetPosition.tscn")
 
-func _init(target):
-	if target:
-		self.target = target
-		self.target.commands.push_back(self) 
+func _init(hero:Hero):
+	if hero:
+		target = hero
+		target.commands.push_back(self) 
 	else:
 		remove()
 	
 func _ready() -> void:
 	mousePos = mousePosScene.instantiate()
-	G.add_child(mousePos)
+	add_child(mousePos)
 	if mousePos && target:
-		mousePos.position = get_global_mouse_position()
+		mousePos.global_position = get_global_mouse_position()
 		target.target = mousePos
 
 func action():
