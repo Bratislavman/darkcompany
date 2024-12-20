@@ -12,7 +12,7 @@ var animationFunc = null
 # дистанция взаимдоействия. 0 значит, что походить к цели не надо
 var actionDistance = 0
 
-func _init(caster, target, actionDistance, animationName, animationFunc):
+func _init(caster, target, animationName, animationFunc):
 	self.caster = caster
 	self.actionDistance = actionDistance
 	self.target = target
@@ -20,16 +20,10 @@ func _init(caster, target, actionDistance, animationName, animationFunc):
 	self.animationFunc = animationFunc
 	caster.playAnim(animationName)
 
-# код. исполняемый в process юнита, пока он жив, иначе удаляемся
-func processCommand():
-	if caster && caster.isLive():
-		action()
-	else:
-		endAnimation()
-
-func action():
-	pass
+func actionAnimation():
+	animationFunc.call()
 
 func endAnimation():
+	caster.playAnim("unit/stay")
 	caster.removeCommand()
 	queue_free()
