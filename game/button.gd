@@ -11,9 +11,7 @@ func _process(delta: float) -> void:
 
 func _on_button_up():
 	var npc = get_parent()
-	print(444)
 	if npc && !npc.isHero && G.hero:
-		
 		if G.hero.commands.size() && (G.hero.commands[0] is CommandMove):
 			G.hero.commands[0].remove()
 		

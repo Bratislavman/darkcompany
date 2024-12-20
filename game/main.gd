@@ -17,3 +17,6 @@ func _unhandled_input(event):
 		
 		var commandMove = CommandMove.new(hero, mousePos)
 		add_child(commandMove)
+
+func checkDistance(caster, target, actionDistance):
+	return caster.global_position.x >= target.global_position.x - actionDistance && caster.global_position.x <= target.global_position.x + actionDistance

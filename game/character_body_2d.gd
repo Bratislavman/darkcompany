@@ -38,14 +38,13 @@ func move() -> void:
 		direction.x = -1
 				
 	# завершяем движение и совершаем экшен команды либо движемся к цели
-	if (global_position.x >= target.global_position.x - permissibleDistance and global_position.x <= target.global_position.x + permissibleDistance):
+	if G.checkDistance(self, target, permissibleDistance):
 		_animation_player.play("ninja/stay")
 		commands[0].action()
 		velocity = Vector2.ZERO
 	else:
 		_animation_player.play("ninja/run")
 		velocity.x = (direction.x * SPEED)
-		#print(velocity, '  ', target.global_position.x, ' Hero, target')
 
 	# инвертируем спрайт к цели
 	if signf(velocity.x) != 0:
