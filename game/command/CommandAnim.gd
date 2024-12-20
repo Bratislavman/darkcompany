@@ -1,7 +1,7 @@
 extends Node
 
 #команда проигрыша анимки действия к обьекту и само действие в конкретный момент анимки
-class_name CommandParent
+class_name CommandAnim
 
 var caster = null
 var target = null

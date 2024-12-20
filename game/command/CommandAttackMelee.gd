@@ -1,28 +1,10 @@
 extends CommandAnim
 class_name CommandAttackMelee
 
-var actionDistance = 0
-
-func _init(caster, target, animationName, animationFunc):
-	if target:
-		self.target = target
-		self.target.command = self 
-	else:
-		remove()
-	
-func _ready() -> void:
-	mousePos = mousePosScene.instantiate()
-	G.add_child(mousePos)
-	if mousePos && target:
-		mousePos.position = get_global_mouse_position()
-		target.target = mousePos
+func _init(caster, target):
+	var commandMove = CommandMove.new(caster)
+	G.add_child(commandMove)
+	super._init(caster, target, 10, 'attack', animationFunc)
 
 func action():
-	remove()
-
-func remove():
-	if target:
-		target.removeCommand()
-	if mousePos:
-		mousePos.queue_free()
-	queue_free()
+	pass

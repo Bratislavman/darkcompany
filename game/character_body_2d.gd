@@ -15,14 +15,11 @@ func _physics_process(delta: float) -> void:
 		# экшен будет либо в мув когда достигаем цели, либо сразу если дейсвие с анимкой
 		if commands[0] is CommandMove: # исправи as на is
 			if target && commands[0].actionDistance > 0:
-				pass
 				move()
 		else:	
 			commands[0].action()
 	move_and_slide()
 	
-
-
 func _ready() -> void:
 	if _animation_player:
 		_animation_player.play("ninja/stay")
@@ -32,7 +29,6 @@ func _ready() -> void:
 func move() -> void:
 	var distTargetPosition
 	var permissibleDistance = commands[0].actionDistance
-	
 
 	distTargetPosition = target.global_position - global_position
 	var direction:Vector2 = distTargetPosition.normalized()
@@ -40,9 +36,9 @@ func move() -> void:
 		direction.x = 1
 	elif direction.x < 0:
 		direction.x = -1
+				
 	# завершяем движение и совершаем экшен команды либо движемся к цели
-	if (global_position.x >= target.global_position.x - permissibleDistance and 
-	global_position.x <= target.global_position.x + permissibleDistance):
+	if (global_position.x >= target.global_position.x - permissibleDistance and global_position.x <= target.global_position.x + permissibleDistance):
 		_animation_player.play("ninja/stay")
 		commands[0].action()
 		velocity = Vector2.ZERO

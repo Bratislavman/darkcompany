@@ -2,31 +2,27 @@ extends Node2D
 class_name CommandMove
 
 var actionDistance = 5
-var target:Hero
-var mousePos
+var caster:Hero
+var target
 
-@onready var mousePosScene = load("res://game/TargetPosition.tscn")
-
-func _init(hero:Hero):
-	if hero:
-		target = hero
-		target.commands.push_back(self) 
+func _init(caster:Hero, target):
+	if caster && target:
+		self.caster = caster
+		self.caster.commands.push_back(self) 
+		self.target = target
 	else:
 		remove()
 	
 func _ready() -> void:
-	mousePos = mousePosScene.instantiate()
-	add_child(mousePos)
-	if mousePos && target:
-		mousePos.global_position = get_global_mouse_position()
-		target.target = mousePos
+	if caster && target:
+		caster.target = target
 
 func action():
 	remove()
 
 func remove():
-	if target:
-		target.removeCommand()
-	if mousePos:
-		mousePos.queue_free()
+	if caster:
+		caster.removeCommand()
+	if target is TargetPosition:
+		target.queue_free()
 	queue_free()
