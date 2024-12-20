@@ -1,60 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2hphuoai7ref"]
+[gd_scene load_steps=2 format=3 uid="uid://d2hphuoai7ref"]
 
 [ext_resource type="Script" path="res://game/main.gd" id="1_snyqb"]
-[ext_resource type="Script" path="res://game/pause.gd" id="2_0s5ph"]
-[ext_resource type="Script" path="res://game/camera_2d.gd" id="2_nui0f"]
-[ext_resource type="PackedScene" uid="uid://dfqah32c8rrch" path="res://game/ninja.tscn" id="4_0us66"]
-[ext_resource type="Texture2D" uid="uid://bgxxvobh5wonn" path="res://icon.svg" id="5_6wyl7"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_snyqb")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
-size_flags_vertical = 0
-mouse_filter = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -237.0
-offset_bottom = 31.0
-grow_horizontal = 0
-mouse_filter = 1
-
-[node name="Button" type="Button" parent="CanvasLayer/Control/PanelContainer"]
-process_mode = 3
-z_index = -10
-z_as_relative = false
-layout_mode = 2
-text = "Пауза"
-script = ExtResource("2_0s5ph")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(1e-05, 1e-05)
-limit_left = -500
-limit_top = -2000
-limit_right = 20000
-limit_bottom = 20000
-editor_draw_limits = true
-script = ExtResource("2_nui0f")
-
-[node name="Hero" parent="." instance=ExtResource("4_0us66")]
-position = Vector2(146, 95)
-
-[node name="Node2" parent="." instance=ExtResource("4_0us66")]
-position = Vector2(467, 95)
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(310, 179)
-texture = ExtResource("5_6wyl7")
-
-[connection signal="button_down" from="CanvasLayer/Control/PanelContainer/Button" to="CanvasLayer/Control/PanelContainer/Button" method="_on_button_down"]

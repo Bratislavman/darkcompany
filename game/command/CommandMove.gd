@@ -11,7 +11,7 @@ func _init(caster:Hero, target, actionDistance = 5):
 		self.caster.commands.push_back(self) 
 		self.target = target
 		self.actionDistance = actionDistance
-		print(actionDistance, 'actionDistance')
+		G.add_child(self)
 	else:
 		remove()
 	

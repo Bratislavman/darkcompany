@@ -3,7 +3,7 @@ class_name CommandAttackMelee
 
 var startAttackAnim = false
 
-func _init(caster, target):
+func _init(caster: Hero, target: Hero):
 	actionDistance = 80
 	
 	var commandMove = CommandMove.new(caster, target, actionDistance)

@@ -12,9 +12,3 @@ script = ExtResource("1_cjo6q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ff1xw")
 disabled = true
-
-[node name="Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-mouse_filter = 1
-text = "bnbn"

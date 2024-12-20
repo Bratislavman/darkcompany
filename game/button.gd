@@ -10,7 +10,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_button_up():
-	var npc = get_parent()
+	var npc = get_parent() as Hero
 	#потом сделать проверку что герой юзает на нпс по которому кликнул герой, пока ток атака
-	if npc && !npc.isHero:	
+	if npc && !npc.isHero && npc.isLive():
 		CommandAttackMelee.new(G.hero, npc)

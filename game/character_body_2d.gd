@@ -18,9 +18,11 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 	
 func _ready() -> void:
+	print(get_instance_id(), self, ' ready instane id')
 	playAnim("unit/stay")
 	attributes['dmg'] = Attributes.new('Урон', 10)
 	attributes['hp'] = Attributes.new('Жизни', 10)
+	
 
 func move() -> void:
 	var distTargetPosition
