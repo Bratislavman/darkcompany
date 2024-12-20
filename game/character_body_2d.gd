@@ -71,3 +71,6 @@ func actionAnimation():
 	
 func endAnimation():
 	commands[0].endAnimation()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print(body, 'event4545') # Replace with f
