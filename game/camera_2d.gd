@@ -9,10 +9,6 @@ const CAMERA_TWEEN_DURATION : float = 0.5
 
 var m_CameraTween : Tween = null
 
-func _ready() -> void:
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, 'offset', Vector2(0, 200), 1)
-
 func _process(_delta) -> void:
 	if (Input.is_action_pressed("mr")):
 		move_local_x(CAMERA_MOVEMENT_SPEED)
