@@ -15,16 +15,12 @@ func _ready() -> void:
 	char2.position.x = 600
 	char2.position.y = 1500
 	add_child(char2)
-	
-	print('starttt!!!!!!')
-		
 
 func _process(delta: float) -> void:
 	pass
 
 func _unhandled_input(event):
 	if Input.is_action_just_pressed("click") and hero:
-		print(444444)
 		var mousePos = mousePosScene.instantiate()
 		add_child(mousePos)
 		mousePos.global_position = get_global_mouse_position()

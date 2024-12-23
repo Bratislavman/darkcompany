@@ -18,7 +18,6 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 	
 func _ready() -> void:
-	print(get_instance_id(), self, ' ready instane id')
 	playAnim("unit/stay")
 	attributes['dmg'] = Attributes.new('Урон', 10)
 	attributes['hp'] = Attributes.new('Жизни', 10)
@@ -74,3 +73,8 @@ func endAnimation():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print(body, 'event4545') # Replace with f
+
+
+func _on_button_button_up() -> void:
+	if !isHero && isLive():
+		CommandAttackMelee.new(G.hero, self)
